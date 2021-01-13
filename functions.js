@@ -18,7 +18,7 @@ function getChannelName(channel) {
   return channel.name;
 }
 
-console.log(getChannelName(channels[0]));
+//console.log(getChannelName(channels[0]));
 
 /**************************************************************
  * numberOfVideos(channel)
@@ -29,7 +29,7 @@ function numberOfVideos(channel) {
   // Your code here
   return channel.videos.length;
 }
-console.log(numberOfVideos(channels[0]))
+//console.log(numberOfVideos(channels[0]))
 
 /**************************************************************
  * channelHasVideo(videoTitle, channel):
@@ -51,6 +51,12 @@ function channelHasVideo(videoTitle, channel) {
 */
   return channel.videos.some((video)=> video.title === videoTitle);
 }
+
+//console.log(channelHasVideo("The Universal S", channel));
+
+
+
+
 //console.log(channelHasVideo("The Universal S", channels[0]));
 //console.log(channelHasVideo("The Universal S", channels[1]));
 
@@ -68,7 +74,7 @@ function getChannelByName(channelName, channels) {
   return channels.find((w)=> w.name == channelName)
   
 }
-console.log(getChannelByName("PowerfulJRE", channels))
+//console.log(getChannelByName("PowerfulJRE", channels))
 
 /**************************************************************
  * getChannelByVideoTitle(videoTitle, channels):
@@ -78,13 +84,30 @@ console.log(getChannelByName("PowerfulJRE", channels))
  *
  * BONUS: use iteration methods `.find()` and `.some()`
  ****************************************************************/
+
+
 function getChannelByVideoTitle(videoTitle, channels) {
  
   //return channels.find(s.channelHasVideo(videoTitle, channels))
-  return channels.find((f)=> channelHasVideo(videoTitle, channel));
-  
+  //return channels.find((f)=> channelHasVideo(videoTitle, channels));
+
+  let found;
+  channels.forEach((channel) => {
+    channel.videos.forEach((video)=> {
+      if (video.title === videoTitle){
+      found=channel;
+    }
+    });
+  });
+  return found;
 }
-console.log(channelHasVideo("The Universal S", channels));
+
+
+
+
+
+
+
 
 /**************************************************************
  * searchChannels(query, channels):
@@ -98,10 +121,10 @@ function searchChannels(query, channels) {
   // Your code here
 
   return channels.filter(j=> 
-    j.name.toLowerCase().includes(query)||j.descriptoion.toLowerCase().includes(query)
+    j.name.toLowerCase().includes(query)||j.description.toLowerCase().includes(query)
   );
 }
-console.log(searchChannels("the", channels))
+//console.log(searchChannels("the", channels))
 
 module.exports = {
   getChannelName,
